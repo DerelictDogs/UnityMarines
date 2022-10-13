@@ -62,6 +62,7 @@ namespace Systems.Electricity
 		PowerTypeCategory.Turbine,
 		PowerTypeCategory.SolarPanel,
 		PowerTypeCategory.RadiationCollector,
+		PowerTypeCategory.FusionGenerator,
 		PowerTypeCategory.PowerGenerator, //make sure unconditional supplies come first
 
 		PowerTypeCategory.SMES, //Then conditional supplies With the hierarchy you want
@@ -74,6 +75,7 @@ namespace Systems.Electricity
 		PowerTypeCategory.RadiationCollector, //make sure unconditional supplies come first
 		PowerTypeCategory.Turbine,
 		PowerTypeCategory.PowerGenerator,
+		PowerTypeCategory.FusionGenerator,
 		PowerTypeCategory.SolarPanel,
 	};
 
