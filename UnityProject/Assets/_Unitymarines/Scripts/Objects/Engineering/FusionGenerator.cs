@@ -1,7 +1,5 @@
 using System;
-using AddressableReferences;
 using UnityEngine;
-using Mirror;
 using Systems.Electricity.NodeModules;
 using UnityMarines.Items.Engineering;
 
@@ -10,21 +8,9 @@ namespace UnityMarines.Objects.Engineering
 	/// <summary>
 	/// Wanted to make this a subclass of PowerGenerator.cs, however shortly discovered it would be more complicated to do so then just have a standalone class
 	/// </summary>
-	[RequireComponent(typeof(ItemStorage)), RequireComponent(typeof(ModuleSupplyingDevice))]
-	public class FusionGenerator : NetworkBehaviour, ICheckedInteractable<HandApply>, INodeControl, IExaminable, IServerSpawn
+	[RequireComponent(typeof(ItemStorage))]
+	public class FusionGenerator : RepairableGenerator
 	{
-		private enum GeneratorState
-		{
-			On = 0,
-			Off = 1,
-			PanelOff = 2,
-			WireExposed = 3,
-			GlassBroken = 4,
-		}
-
-		[SerializeField, SyncVar(hook = nameof(OnSyncState))]
-		private GeneratorState generatorState = GeneratorState.Off;
-
 		[Tooltip("The cell item that will placed in this generator on spawn, leave blank for no starting cell.")]
 		[SerializeField]
 		private GameObject initialFusionCell = null;
@@ -35,31 +21,13 @@ namespace UnityMarines.Objects.Engineering
 		[SerializeField]
 		private ItemTrait cellTrait = null;
 
-		[SerializeField]
-		private int SupplyWattage = 80000;
-
-		private RegisterTile registerTile;
-		private Integrity integrity;
 		private ItemSlot itemSlot;
-		private SpriteHandler baseSpriteHandler;
-		private ModuleSupplyingDevice moduleSupplyingDevice;
-
-		[SerializeField]
-		private AddressableAudioSource generatorRunSfx = null;
-		[SerializeField]
-		private AddressableAudioSource generatorEndSfx = null;
-
-		private string runLoopGUID = "";
 
 		private const float totalBarOffset = -0.344f; //How large is the power bar in units
-		[SyncVar(hook = nameof(OnSyncVisual))]
-		private float currentBarOffset = 0; //How large is the power bar in units
-		[SerializeField]
-		private GameObject barVisual = null;
 
 		#region Lifecycle
 
-		void Awake()
+		private void Awake()
 		{
 			registerTile = GetComponent<RegisterTile>();
 			baseSpriteHandler = GetComponentInChildren<SpriteHandler>();
@@ -70,7 +38,7 @@ namespace UnityMarines.Objects.Engineering
 			itemSlot = itemStorage.GetIndexedItemSlot(0);
 		}
 
-		public void OnSpawnServer(SpawnInfo info)
+		public override void OnSpawnServer(SpawnInfo info)
 		{
 			if (generatorState == GeneratorState.On)
 			{
@@ -89,40 +57,11 @@ namespace UnityMarines.Objects.Engineering
 			integrity.OnApplyDamage.AddListener(OnTakeDamage);
 		}
 
-		private void OnDisable()
-		{
-			if (generatorState == GeneratorState.On)
-			{
-				ToggleOff();
-			}
-
-			OnSyncState(GeneratorState.Off,generatorState);
-		
-			integrity.OnApplyDamage.RemoveListener(OnTakeDamage);
-		}
-
 		#endregion
-
-		private void OnTakeDamage(DamageInfo damageInfo = null)
-		{
-			GeneratorState newState = generatorState;
-	
-			if (generatorState != GeneratorState.GlassBroken && integrity.PercentageDamaged <= 0.25f) newState = GeneratorState.GlassBroken;
-			else if (generatorState != GeneratorState.WireExposed && integrity.PercentageDamaged <=0.5f) newState = GeneratorState.WireExposed;
-			else if ((generatorState == GeneratorState.On || generatorState == GeneratorState.Off) && integrity.PercentageDamaged <= 0.75f) newState = GeneratorState.PanelOff;
-
-			if(newState != generatorState)
-			{
-				if (generatorState == GeneratorState.On) ToggleOff();
-				generatorState = newState;
-			}
-		}
-
-		public void PowerNetworkUpdate() { }
 
 		#region Interaction
 
-		public string Examine(Vector3 worldPos = default)
+		public override string Examine(Vector3 worldPos = default)
 		{
 			var stateList = new string[5] {"running", "turned off", "minorly damaged", "moderately damaged", "heavily damaged"};
 			var repairText = new string[3] { "Use a wrench to repair it." , "Use a wirecutters, then wrench to repair it.", "Use a blowtorch, then wirecutters, then wrench to repair it." };
@@ -147,90 +86,41 @@ namespace UnityMarines.Objects.Engineering
 			return examineText;
 		}
 
-		public bool WillInteract(HandApply interaction, NetworkSide side)
+		public override bool WillInteract(HandApply interaction, NetworkSide side)
 		{
 			if (DefaultWillInteract.Default(interaction, side) == false) return false;
-			if (interaction.Intent == Intent.Harm) return false;
-			if (interaction.TargetObject != gameObject) return false;
-
-			if (interaction.HandObject == null && (generatorState == GeneratorState.On || generatorState == GeneratorState.Off)) return true; //Turning on and off
 
 			if (Validations.HasItemTrait(interaction.HandObject, cellTrait)) return true; //Adding a new power cell
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Crowbar)) return true; //Removing a power cell
-			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wrench) && generatorState == GeneratorState.PanelOff) return true; //Repairing from minor damage
-			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wirecutter) && generatorState == GeneratorState.WireExposed) return true; //Repairing from moderate to minor damage
-			if (Validations.HasUsedActiveWelder(interaction.HandObject) && generatorState == GeneratorState.GlassBroken) return true; //Repairing from heavy to moderate damage.
 
-			return false;
+			return base.WillInteract(interaction, side);
 		}
 
-		public void ServerPerformInteraction(HandApply interaction)
+		public override void ServerPerformInteraction(HandApply interaction)
 		{
-			if (interaction.HandObject == null) //Toggle on/off interaction
+			if (Validations.HasItemTrait(interaction.HandObject, cellTrait)) //Add fustion cell interaction
 			{
-				if (generatorState == GeneratorState.Off)
-				{
-					if (TryToggleOn() == false) Chat.AddWarningMsgFromServer(interaction.Performer, $"The reactor requires a fuel cell before you can turn it on.");
-					
-				}
-				else if (generatorState == GeneratorState.On) ToggleOff();
-
-				return;
-			}
-
-			if(Validations.HasItemTrait(interaction.HandObject, cellTrait)) //Add fustion cell interaction
-			{
-				if(currentCell != null)
+				if (currentCell != null)
 				{
 					Chat.AddWarningMsgFromServer(interaction.Performer, $"You need to remove the fuel cell from the reactor first.");
 					return;
 				}
-				if(generatorState == GeneratorState.Off)
+				if (generatorState == GeneratorState.Off)
 				{
 					Inventory.ServerTransfer(interaction.HandSlot, itemSlot, ReplacementStrategy.DropOther);
 					UpdateCell();
-					Chat.AddExamineMsg(interaction.Performer,"You load the reactor with the fusion cell.");
+					Chat.AddExamineMsg(interaction.Performer, "You load the reactor with the fusion cell.");
 				}
 				else
 				{
-					if(generatorState == GeneratorState.On) Chat.AddWarningMsgFromServer(interaction.Performer, "The reactor needs to be turned off first.");
+					if (generatorState == GeneratorState.On) Chat.AddWarningMsgFromServer(interaction.Performer, "The reactor needs to be turned off first.");
 					else Chat.AddWarningMsgFromServer(interaction.Performer, "Fusion cell can not be loaded in current reactor state, please seek repairs.");
 				}
 			}
 
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Crowbar)) PerformCrowbarInteraction(interaction);
 
-			GeneratorState repairedState = GeneratorState.Off;
-
-			string[] firstPersonMessages;
-			string[] thirdPersonMessages;
-			string targetName;
-
-			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wrench))
-			{
-				firstPersonMessages = new string[2]{"You start repairing","You repair"};
-				thirdPersonMessages = new string[2] { "starts repairing", "repairs" };
-				targetName = "tubing and plating";
-				PerformRepair(interaction,repairedState,1f,firstPersonMessages,thirdPersonMessages,targetName);
-			}
-			else if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wirecutter))
-			{
-				firstPersonMessages = new string[2] { "You start securing", "You secure" };
-				thirdPersonMessages = new string[2] { "starts securing", "secures" };
-				targetName = "wiring";
-				repairedState = GeneratorState.PanelOff;
-
-				PerformRepair(interaction, repairedState, 1/2f, firstPersonMessages, thirdPersonMessages, targetName);
-			}
-			else if (Validations.HasUsedActiveWelder(interaction.HandObject))
-			{
-				firstPersonMessages = new string[2] { "You start welding", "You weld" };
-				thirdPersonMessages = new string[2] { "starts welding", "welds" };
-				targetName = "internal damage";
-				repairedState = GeneratorState.WireExposed;
-
-				PerformRepair(interaction, repairedState, 1/4f, firstPersonMessages, thirdPersonMessages, targetName);
-			}
+			base.ServerPerformInteraction(interaction);
 		}
 
 		public void PerformCrowbarInteraction(HandApply interaction)
@@ -255,22 +145,6 @@ namespace UnityMarines.Objects.Engineering
 			return;
 		}
 
-		private void PerformRepair(HandApply interaction, GeneratorState repairState, float targetIntegrity, string[] firstPersonMessages, string[] thirdPersonMessages, string targetName)
-		{
-			//Dont need to do any state checks as already done in will interact for all repair interactions
-			ToolUtils.ServerUseToolWithActionMessages(interaction, 5f,
-				$"{firstPersonMessages[0]} {gameObject.ExpensiveName()}'s {targetName}...",
-				$"{interaction.Performer.ExpensiveName()} {thirdPersonMessages[0]} {gameObject.ExpensiveName()}'s {targetName}...",
-				$"{firstPersonMessages[1]} {gameObject.ExpensiveName()}'s {targetName}.",
-				$"{interaction.Performer.ExpensiveName()} {thirdPersonMessages[1]} {gameObject.ExpensiveName()}'s {targetName}.",
-				() =>
-				{
-					generatorState = repairState;
-					float integrityToRestore = (integrity.initialIntegrity*targetIntegrity) - integrity.integrity;
-					integrity.RestoreIntegrity(integrityToRestore); //Restores health;
-				});
-		}
-
 		#endregion
 
 		#region Power
@@ -292,7 +166,7 @@ namespace UnityMarines.Objects.Engineering
 			return false;
 		}
 
-		private bool TryToggleOn()
+		protected override bool TryToggleOn()
 		{
 			if(currentCell == null || currentCell.FuelPercent <= 0) return false;
 			if(generatorState != GeneratorState.Off) return false; //Cannot be turned on if damaged or already on.
@@ -302,9 +176,10 @@ namespace UnityMarines.Objects.Engineering
 			return true;
 		}
 
-		private void ToggleOn()
+		protected override void ToggleOn()
 		{
 			currentBarOffset = totalBarOffset * (100 - currentCell.FuelPercent) / 100;
+			Debug.Log("Current Bar Offset: " + currentBarOffset);
 
 			moduleSupplyingDevice.ProducingWatts = Math.Clamp(SupplyWattage * 2 * currentCell.FuelPercent / 100, 0, SupplyWattage); //Loses wattage as fuel cell drains, but only after 50% fuelPercent. After which, every % of fuel lost results in 2% power loss
 
@@ -314,7 +189,7 @@ namespace UnityMarines.Objects.Engineering
 			generatorState = GeneratorState.On;
 		}
 
-		private void ToggleOff()
+		protected override void ToggleOff()
 		{
 			UpdateManager.Remove(CallbackType.PERIODIC_UPDATE, UpdateMe);
 			currentBarOffset = totalBarOffset;
@@ -322,7 +197,7 @@ namespace UnityMarines.Objects.Engineering
 			generatorState = GeneratorState.Off;
 		}
 
-		private void UpdateMe()
+		protected override void UpdateMe()
 		{
 			if(currentCell == null || currentCell.FuelPercent <= 0)
 			{
@@ -335,36 +210,6 @@ namespace UnityMarines.Objects.Engineering
 			currentBarOffset = totalBarOffset * (100-currentCell.FuelPercent) / 100;
 
 			moduleSupplyingDevice.ProducingWatts = Math.Clamp(SupplyWattage * 2 * currentCell.FuelPercent / 100, 0, SupplyWattage); //Loses wattage as fuel cell drains, but only after 50% fuelPercent. After which, every % of fuel lost results in 2% power loss
-		}
-
-	
-
-		#endregion
-
-		#region Syncs
-
-		private void OnSyncState(GeneratorState oldState, GeneratorState newState)
-		{
-			generatorState = newState;
-			baseSpriteHandler.ChangeSprite((int)generatorState);
-
-			if(generatorState == GeneratorState.On)
-			{
-				runLoopGUID = Guid.NewGuid().ToString();
-				SoundManager.PlayAtPositionAttached(generatorRunSfx, registerTile.WorldPosition, gameObject, runLoopGUID);
-			}
-			else if (oldState == GeneratorState.On)
-			{
-				SoundManager.Stop(runLoopGUID);
-				_ = SoundManager.PlayAtPosition(generatorEndSfx, registerTile.WorldPosition, gameObject);
-			}
-		}
-
-		private void OnSyncVisual(float oldPos, float newPos)
-		{
-			currentBarOffset = newPos;
-
-			barVisual.transform.localPosition = new Vector3(0, currentBarOffset, 0);
 		}
 
 		#endregion

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using System;
 
 namespace UnityMarines.Items.Engineering
 {
@@ -32,15 +33,14 @@ namespace UnityMarines.Items.Engineering
 			UpdateSprite();
 		}
 
-		public bool ConsumeFuel(float amount)
+		public void ConsumeFuel(float amount)
 		{
-			float newAmount = fuelCurrent -= amount;
-			if (fuelCurrent < 0) return false;
-			else
-			{
-				fuelCurrent = newAmount;
-				return true;
-			}
+			fuelCurrent = Math.Clamp(fuelCurrent - amount,0,fuelCapacity);
+		}
+
+		public void ReplenishFuel(float amount)
+		{
+			fuelCurrent = Math.Clamp(fuelCurrent + amount, 0, fuelCapacity);
 		}
 
 		public void UpdateSprite()

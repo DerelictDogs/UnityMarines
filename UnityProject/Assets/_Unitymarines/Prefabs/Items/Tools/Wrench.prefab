@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8635184953273439452
+--- !u!1001 &8048840222752051848
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,19 +10,13 @@ PrefabInstance:
     - target: {fileID: 3625032727629584949, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: foreverID
-      value: um_blowtorch
+      value: um_wrench
       objectReference: {fileID: 0}
-    - target: {fileID: 4589751709501222367, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
-        type: 3}
-      propertyPath: PresentSpriteSet
-      value: 
-      objectReference: {fileID: 11400000, guid: d465d0edaa16b3443b2c8d80114e7fb4,
-        type: 2}
     - target: {fileID: 7495670348273706244, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1d7461ddd9fdceb4ba742cc88c5e5c8e,
+      objectReference: {fileID: 21300000, guid: 14b0f7933536eda48a8004ed79ccff24,
         type: 3}
     - target: {fileID: 7495670348273706244, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
@@ -84,30 +78,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7706605898707239806, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7706800165841884760, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: m_Name
-      value: Blowtorch
+      value: Wrench
       objectReference: {fileID: 0}
     - target: {fileID: 7737246226656226284, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: m_AssetId
-      value: 6c3dfe7d8d5762047a0ff0db3ab63bde
+      value: 8fc5a56bb158ca241b88626fa9c7abff
       objectReference: {fileID: 0}
     - target: {fileID: 7789423465313909050, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: initialName
-      value: Blowtorch
+      value: Wrench
       objectReference: {fileID: 0}
     - target: {fileID: 7789423465313909050, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
       propertyPath: initialSize
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789423465313909050, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
+        type: 3}
+      propertyPath: initialDescription
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7789423465313909050, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
         type: 3}
@@ -118,79 +112,8 @@ PrefabInstance:
         type: 3}
       propertyPath: initialTraits.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: aaed69546e98a47d8b488a046d00ebe7,
+      objectReference: {fileID: 11400000, guid: 024541a41c4ab42a499f8e49374496d4,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4589751709501222367, guid: 02eac1546fa6faa4e92b5ef94bf6213a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 02eac1546fa6faa4e92b5ef94bf6213a, type: 3}
---- !u!1 &2099340559142617732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7706800165841884760, guid: 02eac1546fa6faa4e92b5ef94bf6213a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8635184953273439452}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &743350398781008147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099340559142617732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d408cfa84b1b6714c90e9c97d3f1733c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBurningOnSpawn: 0
-  hotspotTemperature: 700
-  changeGasMixTemp: 1
---- !u!114 &2141218654429309567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099340559142617732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9da0320d51e94478be2bc729c42960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  fuel: {fileID: 11400000, guid: f4f9cca4ec6d74752a99cdbf95072489, type: 2}
-  damageOn: 15
---- !u!114 &2478716702144199220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099340559142617732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6adedb9416d7b647b6c3811ff2f0824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxCapacity: 40
-  reactionSet: {fileID: 11400000, guid: 2d5f766d9268838aa8d819bee2a442a7, type: 2}
-  AdditionalReactions: []
-  initialReagentMix:
-    temperature: 0
-    reagents:
-      m_keys:
-      - {fileID: 11400000, guid: f4f9cca4ec6d74752a99cdbf95072489, type: 2}
-      m_values:
-      - 40
-    reagentKeys: []
-  destroyOnEmpty: 0
-  ContentsSet: 0
-  menuOptions: 0
-  UseStandardExamine: 1
-  ExamineAmount: 1
-  ExamineContent: 0
-  traitWhitelist: []
-  reagentWhitelist:
-  - {fileID: 11400000, guid: f4f9cca4ec6d74752a99cdbf95072489, type: 2}
-  transferMode: 3
-  possibleTransferAmounts: []
-  transferAmount: 100

@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820373400833421161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.344, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3a441d135f5a3bb4da00321026328a6c, type: 3}
-  m_Color: {r: 0.21867208, g: 0.8490521, b: 0.990566, a: 0.42745098}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -231,7 +231,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PresentSpriteSet
       value: 
-      objectReference: {fileID: 11400000, guid: bc074a24161818546b7dbaf15726ab4c,
+      objectReference: {fileID: 11400000, guid: 2484a916f5f68ae4cbba548d71fb2c20,
         type: 2}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
@@ -242,42 +242,41 @@ PrefabInstance:
         type: 3}
       propertyPath: SubCatalogue.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 5353918f2f32dc44eb263cbac3844b0c,
+      objectReference: {fileID: 11400000, guid: 10c2cdbdf2c1a9c4cbd3a59f9ca9738d,
         type: 2}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: SubCatalogue.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: bc074a24161818546b7dbaf15726ab4c,
+      objectReference: {fileID: 11400000, guid: 2484a916f5f68ae4cbba548d71fb2c20,
         type: 2}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: SubCatalogue.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: dffd0a8d497dd864ebb0eca9578bdc51,
+      objectReference: {fileID: 11400000, guid: d67e06743f1bcf24d84a41c469127d56,
         type: 2}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: SubCatalogue.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 227f5555fac10084a9d4ff880ae6f0fe,
+      objectReference: {fileID: 11400000, guid: c12b3ba82e80c9749a9acbc88b316b4c,
         type: 2}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: SubCatalogue.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: ebd38114bb3fff44ab78d490eb677dea,
+      objectReference: {fileID: 11400000, guid: 0b0b0822b48aeaf408f11e9ed2b0c918,
         type: 2}
     - target: {fileID: 2369703904120951400, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: initialName
-      value: improper S-52 fusion reactor
+      value: improper G-11 geothermal generator
       objectReference: {fileID: 0}
     - target: {fileID: 2369703904120951400, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: initialDescription
-      value: A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them
-        to power for the ship.  Also produces a large amount of heat.
+      value: A thermoelectric generator sitting atop a plasma-filled borehole.
       objectReference: {fileID: 0}
     - target: {fileID: 3574394764050397242, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
@@ -292,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 4919932814048742744, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: m_Name
-      value: FusionGeneratorBase
+      value: GeothermalGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 4923183270029429634, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
@@ -363,7 +362,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b830ac6d4a97850429733d9c6b9071ea,
+      objectReference: {fileID: 21300000, guid: 34225559f8edaef4899764526597d38c,
         type: 3}
     - target: {fileID: 5127102138986654031, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
@@ -373,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 8302092303285170961, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: foreverID
-      value: fusion_generator_base
+      value: geothermal_generator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82, type: 3}
@@ -477,41 +476,6 @@ MonoBehaviour:
   isEMPResistant: 0
   mustBeUnanchored: 0
   secondsToScrewdrive: 10
---- !u!114 &3723596218893088697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8771229479239919122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83da005ec1da8c45be8c4a95838fe55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  generatorState: 1
-  initialFusionCell: {fileID: 0}
-  cellTrait: {fileID: 11400000, guid: 14c0252e84d9c2149ae5a8457c49c806, type: 2}
-  SupplyWattage: 80000
-  generatorRunSfx:
-    SetLoadSetting: 0
-    AssetAddress: Assets/Prefabs/Machines/GeneratorRun.prefab
-    AssetReference:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-  generatorEndSfx:
-    SetLoadSetting: 0
-    AssetAddress: Assets/Prefabs/Machines/GeneratorEnd.prefab
-    AssetReference:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-  barVisual: {fileID: 820373400833421161}
 --- !u!114 &5007462094580357176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,3 +501,36 @@ MonoBehaviour:
     DeprecatedContents: []
   ashPrefab: {fileID: 2957035178188790827, guid: 9ac6968a3f3ed54428662c9aae5a4b32,
     type: 3}
+--- !u!114 &5465845977502844676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771229479239919122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ca3d1ec259ea24286112450175e47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  generatorState: 1
+  SupplyWattage: 10000
+  generatorRunSfx:
+    SetLoadSetting: 0
+    AssetAddress: Assets/Prefabs/Machines/GeneratorRun.prefab
+    AssetReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  generatorEndSfx:
+    SetLoadSetting: 0
+    AssetAddress: Assets/Prefabs/Machines/GeneratorEnd.prefab
+    AssetReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  barVisual: {fileID: 820373400833421161}

@@ -742,10 +742,10 @@ public static class Validations
 	/// </summary>
 	/// <param name="interaction"></param>
 	/// <returns></returns>
-	public static bool HasUsedActiveWelder(HandApply interaction)
+	public static bool HasUsedActiveWelder(Interaction interaction)
 	{
-		if (interaction.HandObject == null) return false;
-		var welder = interaction.HandObject.GetComponent<Welder>();
+		if (interaction.UsedObject == null) return false;
+		var welder = interaction.UsedObject.GetComponent<Welder>();
 		if (welder == null) return false;
 		return welder.IsOn;
 	}
