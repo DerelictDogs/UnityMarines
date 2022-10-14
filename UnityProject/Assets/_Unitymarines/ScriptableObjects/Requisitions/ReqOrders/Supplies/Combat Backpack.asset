@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OrderName: Crate with beer and steak
   CreditCost: 1000
-  Crate: {fileID: 0}
+  Crate: {fileID: 8649187542899391589, guid: 49ae57360db12b243942068e0797f63f, type: 3}
   Items: []
   ContentSellPrice: 0
   EmagOnly: 0
