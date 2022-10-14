@@ -84,8 +84,8 @@ namespace UnityMarines.Objects.Engineering
 			GeneratorState newState = generatorState;
 	
 			if (generatorState != GeneratorState.GlassBroken && integrity.PercentageDamaged <= 0.25f) newState = GeneratorState.GlassBroken;
-			else if (generatorState != GeneratorState.WireExposed && integrity.PercentageDamaged <=0.5f) newState = GeneratorState.WireExposed;
-			else if ((generatorState == GeneratorState.On || generatorState == GeneratorState.Off) && integrity.PercentageDamaged <= 0.75f) newState = GeneratorState.PanelOff;
+			else if (generatorState != GeneratorState.WireExposed && integrity.PercentageDamaged <=0.5f && integrity.PercentageDamaged > 0.25f) newState = GeneratorState.WireExposed;
+			else if ((generatorState == GeneratorState.On || generatorState == GeneratorState.Off) && integrity.PercentageDamaged <= 0.75f && integrity.PercentageDamaged > 0.5f) newState = GeneratorState.PanelOff;
 
 			if(newState != generatorState)
 			{

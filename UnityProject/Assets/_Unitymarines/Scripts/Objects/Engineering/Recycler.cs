@@ -98,13 +98,19 @@ namespace UnityMarines.Objects.Engineering
 			}
 			else if (targetSlot.IsOccupied)
 			{
-				var cell = getCell(targetSlot);
-
-				if(cell == null) return;
-				cell.UpdateSprite();
-				cell = null;
+				if (targetSlot == leftSlot)
+				{
+					leftCellItem.UpdateSprite();
+					leftCellItem = null;
+				}
+				else
+				{
+					rightCellItem.UpdateSprite();
+					rightCellItem = null;
+				}
 
 				Inventory.ServerTransfer(targetSlot, interaction.HandSlot);
+
 				if(leftSlot.IsEmpty && rightSlot.IsEmpty)
 				{
 					isUpdating = false;
@@ -117,13 +123,6 @@ namespace UnityMarines.Objects.Engineering
 		}
 
 		#endregion
-
-		public FusionCell getCell(ItemSlot slot)
-		{
-			if (slot == leftSlot) return leftCellItem;
-
-			return rightCellItem;
-		}
 
 		private void UpdateCellSprites()
 		{

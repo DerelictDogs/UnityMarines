@@ -178,11 +178,7 @@ namespace UnityMarines.Objects.Engineering
 
 		protected override void ToggleOn()
 		{
-			currentBarOffset = totalBarOffset * (100 - currentCell.FuelPercent) / 100;
-			Debug.Log("Current Bar Offset: " + currentBarOffset);
-
-			moduleSupplyingDevice.ProducingWatts = Math.Clamp(SupplyWattage * 2 * currentCell.FuelPercent / 100, 0, SupplyWattage); //Loses wattage as fuel cell drains, but only after 50% fuelPercent. After which, every % of fuel lost results in 2% power loss
-
+			UpdateMe();
 			UpdateManager.Add(UpdateMe, 5f); //Due to slow consumption of fuel we dont need to do this often
 
 			moduleSupplyingDevice.TurnOnSupply();
