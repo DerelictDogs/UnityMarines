@@ -25,10 +25,6 @@ namespace UnityMarines.Objects.Engineering
 		[SerializeField, SyncVar(hook = nameof(OnSyncState))]
 		private GeneratorState generatorState = GeneratorState.Off;
 
-		[Tooltip("Whether this generator should start running when spawned.")]
-		[SerializeField]
-		private bool startAsOn = false;
-
 		[Tooltip("The cell item that will placed in this generator on spawn, leave blank for no starting cell.")]
 		[SerializeField]
 		private GameObject initialFusionCell = null;
@@ -61,7 +57,6 @@ namespace UnityMarines.Objects.Engineering
 		[SerializeField]
 		private GameObject barVisual = null;
 
-
 		#region Lifecycle
 
 		void Awake()
@@ -77,7 +72,7 @@ namespace UnityMarines.Objects.Engineering
 
 		public void OnSpawnServer(SpawnInfo info)
 		{
-			if (startAsOn)
+			if (generatorState == GeneratorState.On)
 			{
 				if (initialFusionCell == null) return;
 	
@@ -86,6 +81,10 @@ namespace UnityMarines.Objects.Engineering
 				UpdateCell();
 				TryToggleOn();
 			}
+
+			if (generatorState == GeneratorState.GlassBroken) integrity.ApplyDamage(0.75f * integrity.initialIntegrity, AttackType.Melee,DamageType.Brute);
+			else if (generatorState == GeneratorState.WireExposed) integrity.ApplyDamage(0.5f * integrity.initialIntegrity, AttackType.Melee, DamageType.Brute);
+			else if (generatorState == GeneratorState.PanelOff) integrity.ApplyDamage(0.25f * integrity.initialIntegrity, AttackType.Melee, DamageType.Brute); //Adjust health from starting state
 
 			integrity.OnApplyDamage.AddListener(OnTakeDamage);
 		}
@@ -126,9 +125,9 @@ namespace UnityMarines.Objects.Engineering
 		public string Examine(Vector3 worldPos = default)
 		{
 			var stateList = new string[5] {"running", "turned off", "minorly damaged", "moderately damaged", "heavily damaged"};
+			var repairText = new string[3] { "Use a wrench to repair it." , "Use a wirecutters, then wrench to repair it.", "Use a blowtorch, then wirecutters, then wrench to repair it." };
 
-			var examineText = $"The generator is currently {stateList[(int)generatorState]}.";
-
+			var examineText = "";
 			if(currentCell == null)
 			{
 				examineText += "\nNo fusion cell in generator.";
@@ -138,12 +137,20 @@ namespace UnityMarines.Objects.Engineering
 				examineText += $"\nInternal fusion cell at: {MathF.Round(currentCell.FuelPercent,2)}% capacity.";
 			}
 
+			examineText += $"\nThe generator is currently {stateList[(int)generatorState]}.";
+
+			if (generatorState != GeneratorState.On && generatorState != GeneratorState.Off)
+			{
+				examineText += repairText[(int)generatorState - 2];
+			}
+
 			return examineText;
 		}
 
 		public bool WillInteract(HandApply interaction, NetworkSide side)
 		{
 			if (DefaultWillInteract.Default(interaction, side) == false) return false;
+			if (interaction.Intent == Intent.Harm) return false;
 			if (interaction.TargetObject != gameObject) return false;
 
 			if (interaction.HandObject == null && (generatorState == GeneratorState.On || generatorState == GeneratorState.Off)) return true; //Turning on and off
@@ -152,7 +159,7 @@ namespace UnityMarines.Objects.Engineering
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Crowbar)) return true; //Removing a power cell
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wrench) && generatorState == GeneratorState.PanelOff) return true; //Repairing from minor damage
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wirecutter) && generatorState == GeneratorState.WireExposed) return true; //Repairing from moderate to minor damage
-			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Welder) && generatorState == GeneratorState.GlassBroken) return true; //Repairing from heavy to moderate damage.
+			if (Validations.HasUsedActiveWelder(interaction.HandObject) && generatorState == GeneratorState.GlassBroken) return true; //Repairing from heavy to moderate damage.
 
 			return false;
 		}
@@ -215,7 +222,7 @@ namespace UnityMarines.Objects.Engineering
 
 				PerformRepair(interaction, repairedState, 1/2f, firstPersonMessages, thirdPersonMessages, targetName);
 			}
-			else if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Welder))
+			else if (Validations.HasUsedActiveWelder(interaction.HandObject))
 			{
 				firstPersonMessages = new string[2] { "You start welding", "You weld" };
 				thirdPersonMessages = new string[2] { "starts welding", "welds" };
@@ -297,9 +304,12 @@ namespace UnityMarines.Objects.Engineering
 
 		private void ToggleOn()
 		{
+			currentBarOffset = totalBarOffset * (100 - currentCell.FuelPercent) / 100;
+
+			moduleSupplyingDevice.ProducingWatts = Math.Clamp(SupplyWattage * 2 * currentCell.FuelPercent / 100, 0, SupplyWattage); //Loses wattage as fuel cell drains, but only after 50% fuelPercent. After which, every % of fuel lost results in 2% power loss
+
 			UpdateManager.Add(UpdateMe, 5f); //Due to slow consumption of fuel we dont need to do this often
-			UpdateMe();
-			currentBarOffset = totalBarOffset * (100-currentCell.FuelPercent) / 100;
+
 			moduleSupplyingDevice.TurnOnSupply();
 			generatorState = GeneratorState.On;
 		}

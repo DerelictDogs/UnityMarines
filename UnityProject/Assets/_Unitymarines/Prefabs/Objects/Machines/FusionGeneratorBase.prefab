@@ -284,6 +284,11 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: d5929dd2b9bc3f94bbc9599af578e2d4
       objectReference: {fileID: 0}
+    - target: {fileID: 4587991533230129861, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
+        type: 3}
+      propertyPath: initialIntegrity
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4919932814048742744, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: m_Name
@@ -453,6 +458,25 @@ MonoBehaviour:
       Resistance:
         Ohms: 1e+10
         ResistanceAvailable: 1
+--- !u!114 &1376493051359043998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771229479239919122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec392d028bea6ad43b1fa1cbc45394ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MachineParts: {fileID: 11400000, guid: 40763b0fc64ab7d4b86a714b91d4ed08, type: 2}
+  machineBoardPrefab: {fileID: 8026946951644424067, guid: 1dedd481e3c5dbe47981ce46e83c5097,
+    type: 3}
+  canNotBeDeconstructed: 1
+  isEMPResistant: 0
+  mustBeUnanchored: 0
+  secondsToScrewdrive: 10
 --- !u!114 &3723596218893088697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +492,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   generatorState: 1
-  startAsOn: 0
   initialFusionCell: {fileID: 0}
   cellTrait: {fileID: 11400000, guid: 14c0252e84d9c2149ae5a8457c49c806, type: 2}
   SupplyWattage: 80000
