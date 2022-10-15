@@ -10,6 +10,7 @@ namespace Objects.Electrical
 			PowerTypeCategory.PowerGenerator,
 			PowerTypeCategory.RadiationCollector,
 			PowerTypeCategory.HighVoltageCable,
+			PowerTypeCategory.HighMachineConnector,
 			PowerTypeCategory.Transformer,
 			PowerTypeCategory.PowerSink,
 			PowerTypeCategory.VoltageProbe,

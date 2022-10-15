@@ -164,6 +164,7 @@ MonoBehaviour:
     Acid: 0
     Magic: 0
     Bio: 0
+    Anomaly: 0
     DismembermentProtectionChance: 0
     StunImmunity: 0
   Resistances:
@@ -178,7 +179,6 @@ MonoBehaviour:
   HeatResistance: 100
   ExplosionsDamage: 100
   doDamageMessage: 1
-  Meleeable: {fileID: 0}
 --- !u!114 &8848522590704173912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     unit.
   willHighlight: 1
   exportCost: 200
-  exportType: 0
+  CanBeSoldInCargo: 1
   exportName: 
   exportMessage: 
   initialSize: 3
@@ -398,21 +398,26 @@ MonoBehaviour:
   LocalTargetPosition: {x: 0, y: 0, z: 0}
   ChangesDirectionPush: 0
   Intangible: 0
+  CanBeWindPushed: 1
+  IsPlayer: 0
   InitialLocationSynchronised: 0
   tileMoveSpeed: 1
   isNotPushable: 1
-  newtonianMovement: {x: 0, y: 0}
+  HasOwnGravity: 0
   airTime: 0
   slideTime: 0
+  SetIgnoreSticky: 0
   thrownBy: {fileID: 0}
   aim: 0
   spinMagnitude: 0
+  ForcedPushedFrame: 0
+  TryPushedFrame: 0
   PushedFrame: 0
   FramePushDecision: 1
   stickyMovement: 0
+  OnThrowEndResetRotation: 0
   maximumStickSpeed: 1.5
   onStationMovementsRound: 0
-  attributes: {fileID: 0}
   registerTile: {fileID: 0}
   ContextGameObjects:
   - {fileID: 0}
@@ -422,14 +427,12 @@ MonoBehaviour:
   CorrectingCourse: 0
   Pushing: []
   Hits: []
-  Speed: 1
-  AIR: 3
-  SLIDE: 4
   Animating: 0
-  IsFlyingSliding: 0
+  isFlyingSliding: 0
   IsMoving: 0
   MoveIsWalking: 0
   LastUpdateClientFlying: 0
+  BuckledToObject: {fileID: 0}
 --- !u!1 &1610444276709522
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +507,7 @@ SpriteRenderer:
   m_SortingLayerID: -24161425
   m_SortingLayer: 8
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: 2cea459d2cb20ee43b38e0d85f1e6420, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1fe6778c4c0df843bd5e2bc36163cb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -529,12 +532,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkThis: 1
   SubCatalogue:
-  - {fileID: 11400000, guid: bd329062e4ba725438d3b6775fa20f6f, type: 2}
-  - {fileID: 11400000, guid: 3e6581ab5a5c7084d83ad843f8086087, type: 2}
-  - {fileID: 11400000, guid: 445b1456e32bd354b807ecf157bd8c0e, type: 2}
-  - {fileID: 11400000, guid: 9fae2a38755a8d74a89ef51015862930, type: 2}
-  - {fileID: 11400000, guid: 4df32e0c22d2c0a4cb2cece53e2791f5, type: 2}
-  PresentSpriteSet: {fileID: 11400000, guid: bd329062e4ba725438d3b6775fa20f6f, type: 2}
+  - {fileID: 11400000, guid: 22a5b503aa52a104bb0a70651bc6dca3, type: 2}
+  - {fileID: 11400000, guid: c9713e66342c6544da965097b0c022a6, type: 2}
+  - {fileID: 11400000, guid: dc0c48bb75b51f942a883ade13195cd8, type: 2}
+  - {fileID: 11400000, guid: c3e7c15bc9294e448b55ff075ef6a983, type: 2}
+  - {fileID: 11400000, guid: c0e3d61a11c6b224fabff0ac97374572, type: 2}
+  PresentSpriteSet: {fileID: 11400000, guid: 22a5b503aa52a104bb0a70651bc6dca3, type: 2}
   randomInitialSprite: 0
   doReverseAnimation: 0
   pushTextureOnStartUp: 1
@@ -614,7 +617,7 @@ SpriteRenderer:
   m_SortingLayerID: -24161425
   m_SortingLayer: 8
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: fdad960831cb8814b8e6bc07999353e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 530210da0d05a4a4b940dec5b0c7af8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -639,9 +642,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkThis: 1
   SubCatalogue:
-  - {fileID: 11400000, guid: e4214d0cb98499d4c919e029794bcf5f, type: 2}
-  - {fileID: 11400000, guid: 0fed0ab9d0449274aa1f22b4433a42a9, type: 2}
-  PresentSpriteSet: {fileID: 11400000, guid: e4214d0cb98499d4c919e029794bcf5f, type: 2}
+  - {fileID: 11400000, guid: 175a7bf9d656a4e49a01f021e0ec8032, type: 2}
+  - {fileID: 11400000, guid: 45672244147012c4180315877f39c231, type: 2}
+  PresentSpriteSet: {fileID: 11400000, guid: 175a7bf9d656a4e49a01f021e0ec8032, type: 2}
   randomInitialSprite: 0
   doReverseAnimation: 0
   pushTextureOnStartUp: 1
@@ -721,7 +724,7 @@ SpriteRenderer:
   m_SortingLayerID: -24161425
   m_SortingLayer: 8
   m_SortingOrder: 13
-  m_Sprite: {fileID: 21300000, guid: 03e8bd3eeae9aeb4a8f984ce5db604a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 718428a123cfa7141a5cb40aa1126188, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -746,9 +749,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkThis: 1
   SubCatalogue:
-  - {fileID: 11400000, guid: 04bdc709610a043459bc04e8a56cdd75, type: 2}
-  - {fileID: 11400000, guid: f67f3880b2b405f418bce2e5aa83cad6, type: 2}
-  PresentSpriteSet: {fileID: 11400000, guid: 04bdc709610a043459bc04e8a56cdd75, type: 2}
+  - {fileID: 11400000, guid: fa332d27cd2e0d149af3c37a686abdcc, type: 2}
+  - {fileID: 11400000, guid: 8a0974ac8fb637641b1c728ed114689d, type: 2}
+  PresentSpriteSet: {fileID: 11400000, guid: fa332d27cd2e0d149af3c37a686abdcc, type: 2}
   randomInitialSprite: 0
   doReverseAnimation: 0
   pushTextureOnStartUp: 0
@@ -828,7 +831,7 @@ SpriteRenderer:
   m_SortingLayerID: -24161425
   m_SortingLayer: 8
   m_SortingOrder: 13
-  m_Sprite: {fileID: 21300000, guid: a26830e3359196c4abfd80933b70aba2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c9a7075c9daf984481a16eacab301a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -853,9 +856,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkThis: 1
   SubCatalogue:
-  - {fileID: 11400000, guid: 099b545340b1ba449a6fa244256f1f97, type: 2}
-  - {fileID: 11400000, guid: 76e1ddfdf021c5442a3571c4d9d1cfc7, type: 2}
-  PresentSpriteSet: {fileID: 11400000, guid: 099b545340b1ba449a6fa244256f1f97, type: 2}
+  - {fileID: 11400000, guid: 13d062500c8cdd94b83d2bebd759e6b2, type: 2}
+  - {fileID: 11400000, guid: 49d1265ad745ac54d914ad9df7b2a2f5, type: 2}
+  PresentSpriteSet: {fileID: 11400000, guid: 13d062500c8cdd94b83d2bebd759e6b2, type: 2}
   randomInitialSprite: 0
   doReverseAnimation: 0
   pushTextureOnStartUp: 1

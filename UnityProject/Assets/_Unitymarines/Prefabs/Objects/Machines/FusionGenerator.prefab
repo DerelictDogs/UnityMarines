@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7810064580598895859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 892974377351713648, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_AssetId
+      value: d8d5be1986df8cb46a20d288f08fd5ae
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520848975927047937, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.344
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097647509811902754, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: initialName
+      value: improper S-52 fusion reactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097647509811902754, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: initialDescription
+      value: A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them
+        to power for the ship.  Also produces a large amount of heat.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: PresentSpriteSet
+      value: 
+      objectReference: {fileID: 11400000, guid: bc074a24161818546b7dbaf15726ab4c,
+        type: 2}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SubCatalogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5353918f2f32dc44eb263cbac3844b0c,
+        type: 2}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SubCatalogue.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc074a24161818546b7dbaf15726ab4c,
+        type: 2}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SubCatalogue.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: dffd0a8d497dd864ebb0eca9578bdc51,
+        type: 2}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SubCatalogue.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 227f5555fac10084a9d4ff880ae6f0fe,
+        type: 2}
+    - target: {fileID: 4317081097013038280, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SubCatalogue.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ebd38114bb3fff44ab78d490eb677dea,
+        type: 2}
+    - target: {fileID: 5465845977502844676, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: SupplyWattage
+      value: 8000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676860551850842203, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: foreverID
+      value: fusion_generator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508200120764557298, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.36862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508200120764557298, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508200120764557298, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8749945
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508200120764557298, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.20188677
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767417170745254088, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771229479239919122, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Name
+      value: FusionGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852271836619047429, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b830ac6d4a97850429733d9c6b9071ea,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 5465845977502844676, guid: d5929dd2b9bc3f94bbc9599af578e2d4, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d5929dd2b9bc3f94bbc9599af578e2d4, type: 3}
+--- !u!1 &1574930448603329249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771229479239919122, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7810064580598895859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4416597837472296060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574930448603329249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83da005ec1da8c45be8c4a95838fe55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  generatorState: 1
+  SupplyWattage: 8000
+  generatorRunSfx:
+    SetLoadSetting: 0
+    AssetAddress: Assets/Prefabs/Machines/GeneratorRun.prefab
+    AssetReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  generatorEndSfx:
+    SetLoadSetting: 0
+    AssetAddress: Assets/Prefabs/Machines/GeneratorEnd.prefab
+    AssetReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  barVisual: {fileID: 7422038948940086170}
+  initialFusionCell: {fileID: 0}
+  cellTrait: {fileID: 11400000, guid: 14c0252e84d9c2149ae5a8457c49c806, type: 2}
+--- !u!1 &7422038948940086170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 820373400833421161, guid: d5929dd2b9bc3f94bbc9599af578e2d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7810064580598895859}
+  m_PrefabAsset: {fileID: 0}

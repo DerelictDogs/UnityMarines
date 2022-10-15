@@ -745,7 +745,7 @@ public static class Validations
 	public static bool HasUsedActiveWelder(Interaction interaction)
 	{
 		if (interaction.UsedObject == null) return false;
-		var welder = interaction.UsedObject.GetComponent<Welder>();
+		var welder = interaction.UsedObject.GetComponent<WelderBase>();
 		if (welder == null) return false;
 		return welder.IsOn;
 	}

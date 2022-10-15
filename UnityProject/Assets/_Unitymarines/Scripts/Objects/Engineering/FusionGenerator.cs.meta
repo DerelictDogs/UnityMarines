@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d83da005ec1da8c45be8c4a95838fe55
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - initialFusionCell: {instanceID: 0}
+  - cellTrait: {fileID: 11400000, guid: 14c0252e84d9c2149ae5a8457c49c806, type: 2}
+  - barVisual: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

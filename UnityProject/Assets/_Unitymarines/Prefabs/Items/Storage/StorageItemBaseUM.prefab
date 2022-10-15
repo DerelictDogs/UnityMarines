@@ -79,3 +79,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb9f13c0dd8f0e41b967801b2faa55f, type: 3}
+--- !u!1 &164091462576720322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2071991073037277759, guid: 6cb9f13c0dd8f0e41b967801b2faa55f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2199947635453170685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8683889328218460124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164091462576720322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdce8a163088453ca593c0e98f2c5f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemStorageStructure: {fileID: 0}
+  itemStorageCapacity: {fileID: 0}
+  itemStoragePopulator: {fileID: 0}
+  forceSpawnContents: 0
+  dropItemsOnDespawn: 0
+  UesAddlistPopulater: 0
+  Populater:
+    SlotContents: []
+    DeprecatedContents: []
+  ashPrefab: {fileID: 2957035178188790827, guid: 9ac6968a3f3ed54428662c9aae5a4b32,
+    type: 3}
