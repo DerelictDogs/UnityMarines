@@ -23,8 +23,8 @@ namespace Systems.Cargo
 		public static CargoManager Instance;
 
 		public int Credits;
-		public ShuttleStatus ShuttleStatus = ShuttleStatus.DockedStation;
-		public float CurrentFlyTime;
+		public ElevatorStatus ElevatorStatus = ElevatorStatus.IsUp;
+		public float CurrentTravelTime;
 		public string CentcomMessage = "";  // Message that will appear in status tab. Resets on sending shuttle to centcom.
 		public List<CargoCategory> Supplies = new List<CargoCategory>(); // Supplies - all the stuff cargo can order
 		public List<CargoOrderSO> CurrentOrders = new List<CargoOrderSO>(); // Orders - payed orders that will spawn in shuttle on centcom arrival
@@ -34,7 +34,7 @@ namespace Systems.Cargo
 		public int cartSizeLimit = 20;
 
 		public CargoUpdateEvent OnCartUpdate = new CargoUpdateEvent();
-		public CargoUpdateEvent OnShuttleUpdate = new CargoUpdateEvent();
+		public CargoUpdateEvent OnElevatorUpdate = new CargoUpdateEvent();
 		public CargoUpdateEvent OnCreditsUpdate = new CargoUpdateEvent();
 		public CargoUpdateEvent OnTimerUpdate = new CargoUpdateEvent();
 		public CargoUpdateEvent OnBountiesUpdate = new CargoUpdateEvent();
@@ -44,7 +44,7 @@ namespace Systems.Cargo
 		private CargoData cargoData;
 
 		[SerializeField]
-		private float shuttleFlyDuration = 10f;
+		private float elevatorTravelDuration = 10f;
 
 		private Dictionary<string, ExportedItem> exportedItems = new Dictionary<string, ExportedItem>();
 
@@ -74,7 +74,6 @@ namespace Systems.Cargo
 				Destroy(this);
 			}
 
-
 			randomBountyTimeCheck = UnityEngine.Random.Range((int)randomTimeRangeForRandomBounty.x, (int)randomTimeRangeForRandomBounty.y);
 		}
 
@@ -98,14 +97,13 @@ namespace Systems.Cargo
 		bool CheckLifeforms()
 		{
 			LayerMask layersToCheck = LayerMask.GetMask("Players", "NPC");
-			Transform ObjectHolder = CargoShuttle.Instance.SearchForObjectsOnShuttle();
-			foreach (Transform child in ObjectHolder)
+
+			HashSet<UniversalObjectPhysics> objects = CargoElevator.FetchObjects();
+			if (objects.Count == 0) return false;
+
+			foreach (UniversalObjectPhysics obj in objects)
 			{
-				if (((1 << child.gameObject.layer) & layersToCheck) == 0)
-				{
-					continue;
-				}
-				return true;
+				if(layersToCheck.HasLayer(obj.gameObject.layer)) return true; //If NPC or Player
 			}
 			return false;
 		}
@@ -118,9 +116,9 @@ namespace Systems.Cargo
 			CurrentCart.Clear();
 			SoldHistory.Clear();
 			ClearStatics();
-			ShuttleStatus = ShuttleStatus.DockedStation;
+			ElevatorStatus = ElevatorStatus.IsUp;
 			Credits = 1000;
-			CurrentFlyTime = 0f;
+			CurrentTravelTime = 0f;
 			CentcomMessage = "";
 			Supplies = new List<CargoCategory>(cargoData.Categories);
 			ActiveBounties = new List<CargoBounty>(cargoData.CargoBounties);
@@ -156,23 +154,23 @@ namespace Systems.Cargo
 		/// Calls the shuttle.
 		/// Server only.
 		/// </summary>
-		public void CallShuttle()
+		public void CallElevator()
 		{
 			if (CustomNetworkManager.IsServer == false) return;
 
-			if (CurrentFlyTime > 0f || ShuttleStatus == ShuttleStatus.OnRouteCentcom
-									|| ShuttleStatus == ShuttleStatus.OnRouteStation)
+			if (CurrentTravelTime > 0f || ElevatorStatus == ElevatorStatus.TravellingUp
+									|| ElevatorStatus == ElevatorStatus.TravellingDown)
 			{
 				return;
 			}
 
-			CurrentFlyTime = shuttleFlyDuration;
-			//It works so - shuttle stays in centcomDest until timer is done,
+			CurrentTravelTime = elevatorTravelDuration;
+			//It works so - elevator stays in centcomDest until timer is done,
 			//then it starts moving to station
-			if (ShuttleStatus == ShuttleStatus.DockedCentcom)
+			if (ElevatorStatus == ElevatorStatus.IsDown)
 			{
 				SpawnOrder();
-				ShuttleStatus = ShuttleStatus.OnRouteStation;
+				ElevatorStatus = ElevatorStatus.TravellingUp;
 				CentcomMessage += "Shuttle is sent back with goods." + "\n";
 				StartCoroutine(Timer(true));
 			}
@@ -180,57 +178,59 @@ namespace Systems.Cargo
 			//If we are at station - First checks for any people or animals aboard
 			//If any, refuses to depart until the lifeform is removed.
 			//If none, we start timer and launch shuttle at the same time.
-			//Once shuttle arrives centcomDest - CargoShuttle will wait till timer is done
-			//and will call OnShuttleArrival()
-			else if (ShuttleStatus == ShuttleStatus.DockedStation)
+			//Once elevelator arrives centcomDest - CargoElevator will wait till timer is done
+			//and will call OnElevatorArrival()
+			else if (ElevatorStatus == ElevatorStatus.IsUp)
 			{
+				CargoElevator.Instance.FindObjects();
+
 				string warningMessageEnd = "organisms aboard." + "\n";
 				if (CheckLifeforms())
 				{
-					CurrentFlyTime = 0;
+					CurrentTravelTime = 0;
 					if (CentcomMessage.EndsWith(warningMessageEnd) == false)
 					{
-						CentcomMessage += "Due to safety and security reasons, the automatic cargo shuttle is unable to depart with any human, alien or animal organisms aboard." + "\n";
+						CentcomMessage += "Due to safety and security reasons, the automatic cargo elevator is unable to depart with any human, alien or animal organisms aboard." + "\n";
 					}
 				}
 				else
 				{
-					CargoShuttle.Instance.MoveToCentcom();
-					ShuttleStatus = ShuttleStatus.OnRouteCentcom;
+					CargoElevator.Instance.MoveDown();
+					ElevatorStatus = ElevatorStatus.TravellingDown;
 					CentcomMessage = string.Empty;
 					exportedItems.Clear();
 					StartCoroutine(Timer(false));
 				}
 			}
 
-			OnShuttleUpdate.Invoke();
+			OnElevatorUpdate.Invoke();
 		}
 
 		private IEnumerator Timer(bool launchToStation)
 		{
-			while (CurrentFlyTime > 0f)
+			while (CurrentTravelTime > 0f)
 			{
-				CurrentFlyTime -= 1f;
+				CurrentTravelTime -= 1f;
 				OnTimerUpdate.Invoke();
 				yield return WaitFor.Seconds(1);
 			}
 
-			CurrentFlyTime = 0f;
+			CurrentTravelTime = 0f;
 			if (launchToStation)
 			{
-				CargoShuttle.Instance.MoveToStation();
+				CargoElevator.Instance.MoveUp();
 			}
 		}
 
 		/// <summary>
-		/// Method is called once shuttle arrives to its destination.
+		/// Method is called once elevator arrives to its destination.
 		/// Server only.
 		/// </summary>
-		public void OnShuttleArrival()
+		public void OnElevatorArrival()
 		{
 			if (CustomNetworkManager.IsServer == false) return;
 
-			if (ShuttleStatus == ShuttleStatus.OnRouteCentcom)
+			if (ElevatorStatus == ElevatorStatus.TravellingDown)
 			{
 				foreach (var entry in exportedItems)
 				{
@@ -256,14 +256,14 @@ namespace Systems.Cargo
 					}
 				}
 
-				ShuttleStatus = ShuttleStatus.DockedCentcom;
+				ElevatorStatus = ElevatorStatus.IsDown;
 			}
-			else if (ShuttleStatus == ShuttleStatus.OnRouteStation)
+			else if (ElevatorStatus == ElevatorStatus.TravellingUp)
 			{
-				ShuttleStatus = ShuttleStatus.DockedStation;
+				ElevatorStatus = ElevatorStatus.IsUp;
 			}
 
-			OnShuttleUpdate.Invoke();
+			OnElevatorUpdate.Invoke();
 		}
 
 		public void ProcessCargo(GameObject obj, HashSet<GameObject> alreadySold)
@@ -454,10 +454,10 @@ namespace Systems.Cargo
 
 		private void SpawnOrder()
 		{
-			CargoShuttle.Instance.PrepareSpawnOrders();
+			CargoElevator.Instance.PrepareSpawnOrders();
 			for (int i = 0; i < CurrentOrders.Count; i++)
 			{
-				if (CargoShuttle.Instance.SpawnOrder(CurrentOrders[i]))
+				if (CargoElevator.Instance.SpawnOrder(CurrentOrders[i]))
 				{
 					CurrentOrders.RemoveAt(i);
 					i--;

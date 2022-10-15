@@ -1,10 +1,21 @@
 /// <summary>
-/// Intended for automatic shuttles (escape, cargo...)
+/// Controls cargo elevator
+/// </summary>
+public enum ElevatorStatus
+{
+	TravellingUp = 0,
+	IsUp = 1,
+	TravellingDown = 2,
+	IsDown = 3
+}
+
+/// <summary>
+/// For shuttles that move between two destinations. Will be used by landing shuttles, and temporarily used by evac shuttle
 /// </summary>
 public enum ShuttleStatus
 {
-	OnRouteStation = 0,
-	DockedStation = 1,
-	OnRouteCentcom = 2,
-	DockedCentcom = 3
+	TravellingToA = 0,
+	AtA = 1,
+	TravellingToB = 1,
+	AtB = 2,
 }
