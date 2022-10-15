@@ -745,22 +745,9 @@ public static class Validations
 	public static bool HasUsedActiveWelder(Interaction interaction)
 	{
 		if (interaction.UsedObject == null) return false;
-		var welder = interaction.UsedObject.GetComponent<Welder>();
+		var welder = interaction.UsedObject.GetComponent<WelderBase>();
 		if (welder == null) return false;
 		return welder.IsOn;
-	}
-
-	/// <summary>
-	/// Checks if a welder is on and is being used, also works with blowtorches
-	/// </summary>
-	/// <param name="objectToCheck"></param>
-	/// <returns></returns>
-	public static bool HasUsedActiveWelder(GameObject objectToCheck)
-	{
-		if (objectToCheck == null) return false;
-		var welder = objectToCheck.GetComponent<FireSource>();
-		if (welder == null) return false;
-		return welder.IsBurning && HasItemTrait(objectToCheck, CommonTraits.Instance.Welder);
 	}
 
 	public static bool HasTarget(TargetedInteraction interaction)

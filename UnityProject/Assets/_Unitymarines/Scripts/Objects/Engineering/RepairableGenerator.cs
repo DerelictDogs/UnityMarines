@@ -125,7 +125,7 @@ namespace UnityMarines.Objects.Engineering
 
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wrench) && generatorState == GeneratorState.PanelOff) return true; //Repairing from minor damage
 			if (Validations.HasItemTrait(interaction.HandObject, CommonTraits.Instance.Wirecutter) && generatorState == GeneratorState.WireExposed) return true; //Repairing from moderate to minor damage
-			if (Validations.HasUsedActiveWelder(interaction.HandObject) && generatorState == GeneratorState.GlassBroken) return true; //Repairing from heavy to moderate damage.
+			if (Validations.HasUsedActiveWelder(interaction) && generatorState == GeneratorState.GlassBroken) return true; //Repairing from heavy to moderate damage.
 
 			return false;
 		}
@@ -166,7 +166,7 @@ namespace UnityMarines.Objects.Engineering
 
 				PerformRepair(interaction, repairedState, 1/2f, firstPersonMessages, thirdPersonMessages, targetName);
 			}
-			else if (Validations.HasUsedActiveWelder(interaction.HandObject))
+			else if (Validations.HasUsedActiveWelder(interaction))
 			{
 				firstPersonMessages = new string[2] { "You start welding", "You weld" };
 				thirdPersonMessages = new string[2] { "starts welding", "welds" };
@@ -232,8 +232,11 @@ namespace UnityMarines.Objects.Engineering
 		{				
 			currentBarOffset = totalBarOffset * powerGenPercent / 100;
 
-			if (powerGenPercent < 100 && CheckForFail() == false) powerGenPercent++;
-			else ToggleOff();
+			if (powerGenPercent < 100)
+			{
+				if(CheckForFail() == false) powerGenPercent++;
+				else ToggleOff();
+			}
 
 			moduleSupplyingDevice.ProducingWatts = Math.Clamp(SupplyWattage * powerGenPercent / 100, 0, SupplyWattage); 
 		}
