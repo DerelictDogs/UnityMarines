@@ -57,7 +57,7 @@ MonoBehaviour:
   tileInteractions:
   - {fileID: 11400000, guid: 7b6820d9f95c544a8bf274f9125b4941, type: 2}
   tileStepInteractions: []
-  spawnOnDeconstruct: {fileID: 7602444472548548205, guid: 28ccdf7c9ebf84198bf4b8bd543f4ce8,
+  spawnOnDeconstruct: {fileID: 9146965780298967165, guid: cd59e0d33389e0f4c94a986437f579a6,
     type: 3}
   spawnAmountOnDeconstruct: 1
   lootOnDespawn: {fileID: 11400000, guid: 1a4a35c7013779a469d67421e3cb501d, type: 2}

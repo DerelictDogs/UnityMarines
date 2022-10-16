@@ -336,10 +336,10 @@ namespace Objects.Engineering
 		//	///// Animates the APC screen sprites
 		//	///// </summary>
 		private void RefreshDisplayScreen()
-		{
+		{		
 			screenDisplay.ChangeSprite((int)_state);
 
-			switch(rotatable.CurrentDirection)
+			switch (rotatable.CurrentDirection)
 			{
 				case OrientationEnum.Down_By180:
 					screenDisplay.ChangeSpriteVariant(0);

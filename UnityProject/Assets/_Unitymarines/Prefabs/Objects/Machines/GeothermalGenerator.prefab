@@ -374,7 +374,8 @@ PrefabInstance:
       propertyPath: foreverID
       value: geothermal_generator
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3129823529324655851, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82, type: 3}
 --- !u!4 &8767417170745254088 stripped
 Transform:

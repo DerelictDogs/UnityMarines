@@ -79,3 +79,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb9f13c0dd8f0e41b967801b2faa55f, type: 3}
+--- !u!1 &8316077820514835824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2071991073037277759, guid: 6cb9f13c0dd8f0e41b967801b2faa55f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8046125282981070671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2525849181867679967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316077820514835824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c30ca55ffa4467a421abf7a832a6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  initialAmount: 1
+  maxAmount: 50
+  stacksWith: []
+  stackNames: []
+  stackSprites: []
+  autoStackOnSpawn: 1
+  autoStackOnDrop: 1
