@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da94776a88a47288b2b52168176a278, type: 3}
   m_Name: Ordnance
   m_EditorClassIdentifier: 
-  CategoryName: 
+  CategoryName: Ordnance
   Orders: []

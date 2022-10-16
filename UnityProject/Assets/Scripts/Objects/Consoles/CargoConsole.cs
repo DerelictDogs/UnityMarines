@@ -13,8 +13,8 @@ namespace Objects.Cargo
 {
 	public class CargoConsole : NetworkBehaviour, ICheckedInteractable<HandApply>
 	{
-		public bool CorrectID;
-		public bool Emagged;
+		public bool CorrectID = false;
+		public bool Emagged = false;
 
 		public GUI_Cargo cargoGUI;
 

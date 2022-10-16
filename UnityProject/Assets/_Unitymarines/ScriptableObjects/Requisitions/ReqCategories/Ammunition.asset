@@ -12,5 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da94776a88a47288b2b52168176a278, type: 3}
   m_Name: Ammunition
   m_EditorClassIdentifier: 
-  CategoryName: 
-  Orders: []
+  CategoryName: Ammo
+  Orders:
+  - {fileID: 11400000, guid: 559b6cd762817f944952bb05cc8a9d4d, type: 2}
+  - {fileID: 11400000, guid: 614ae329090bd2c4596d7a2b64b1eb42, type: 2}
+  - {fileID: 11400000, guid: e214fa2424b90c945af96ee867865166, type: 2}
+  - {fileID: 11400000, guid: f8cb6cb6869bba84f88660b2c1bc29b7, type: 2}
+  - {fileID: 11400000, guid: 090e593df46cfdd42bdd8fef98500db7, type: 2}
+  - {fileID: 11400000, guid: 0bfed5c617051d74da970cbb10be0abd, type: 2}
+  - {fileID: 11400000, guid: cec083e67cd20f049b75f4be51e8e2ef, type: 2}
+  - {fileID: 11400000, guid: 046564562c055ae409190026a59a9de9, type: 2}
+  - {fileID: 11400000, guid: 817a7ccfe6b5ddf4cb7a116535d333b8, type: 2}
+  - {fileID: 11400000, guid: b9224db8d397beb4ca0c9e1b86c6fc30, type: 2}
+  - {fileID: 11400000, guid: 230d9a9c37eaaff4f9cb8f41c5094e14, type: 2}
+  - {fileID: 11400000, guid: 8192caf052fb84049a3c7e2a890ba16a, type: 2}
+  - {fileID: 11400000, guid: 79b173c814221d04cba09be2f16cca3a, type: 2}
+  - {fileID: 11400000, guid: ca480697cb21c444e80595b306a7c4b3, type: 2}
+  - {fileID: 11400000, guid: a964cf36f17bed846ba4354bf3d70caa, type: 2}
+  - {fileID: 11400000, guid: 7d3c7cd484b417046b3e87d517c5b559, type: 2}
+  - {fileID: 11400000, guid: 61cd3440ef711e947b778a84de5adf84, type: 2}
+  - {fileID: 11400000, guid: 0211005beffbcc643b6c014f8dcdf595, type: 2}
+  - {fileID: 11400000, guid: 34892b21b27c1d24f8822f688c646b58, type: 2}
+  - {fileID: 11400000, guid: 1039717937a64c24d92d9503a7988622, type: 2}
+  - {fileID: 11400000, guid: 2bba62f57eb310541bcd58ec9d6ad670, type: 2}
+  - {fileID: 11400000, guid: 6588d8c393c29204789468df464d0ed6, type: 2}
+  - {fileID: 11400000, guid: 4ca13da86bc15114baa7d08ecace7128, type: 2}
+  - {fileID: 11400000, guid: 6727ac7894e709c41956618a3d7f7f11, type: 2}
+  - {fileID: 11400000, guid: 5462a85fb86aa914881b63c0b3128869, type: 2}
+  - {fileID: 11400000, guid: 3838b812133a0734ab135d37f56c8de2, type: 2}
+  - {fileID: 11400000, guid: b39a0f262bbcfda4994b68d809b7088b, type: 2}

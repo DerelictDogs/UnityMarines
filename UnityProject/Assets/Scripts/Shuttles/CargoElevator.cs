@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,33 +6,16 @@ using Items;
 
 namespace Systems.Cargo
 {
-	public class CargoShuttle : MonoBehaviour
+	public class CargoElevator : MonoBehaviour
 	{
-		public static CargoShuttle Instance;
+		public static CargoElevator Instance;
 
-		[SerializeField]
-		private Vector2 centcomDest = new Vector2(4, 150);
-		public Vector2 StationDest = new Vector2(4, 85);
-		[SerializeField]
-		private int dockOffset = 23;
-		[SerializeField]
-		private bool ChangeDirectionAtOffset = false;
-		private Vector3 destination;
 		private List<Vector3Int> availableSpawnSlots = new List<Vector3Int>();
-		[SerializeField]
-		[Tooltip("width of AREA")]
-		private int shuttleWidth;
-		private int shuttleZoneWidth;
-		[SerializeField]
-		[Tooltip("height of AREA")]
-		private int shuttleHeight;
-		private int shuttleZoneHeight;
-		[SerializeField]
-		[Tooltip("Check if the matrix is exactly in the middle")]
-		private bool heightInMiddle = false; // Only Unreal does this
-		private bool moving;
 
-		private MatrixMove mm;
+		[SerializeField]
+		private Vector2 Size = new Vector2();
+
+		private static HashSet<UniversalObjectPhysics> objectsOnElevator  = new HashSet<UniversalObjectPhysics>();
 
 		private void Awake()
 		{
@@ -46,12 +27,12 @@ namespace Systems.Cargo
 			{
 				Destroy(this);
 			}
+		}
 
-			mm = GetComponent<MatrixMove>();
-			mm.SetAccuracy(2);
-
-			shuttleZoneWidth = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal((shuttleWidth - 1) / 2)));
-			shuttleZoneHeight = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal((shuttleHeight - 1) / 2)));
+		private void OnDrawGizmos() //Shows elevator bounds for mapping. Starting from bottom left
+		{
+			Gizmos.color = Color.cyan;
+			Gizmos.DrawWireCube(transform.position + new Vector3((Size.x/2) - 0.5f, (Size.y/2) - 0.5f,0), Size);
 		}
 
 		private void OnEnable()
@@ -68,86 +49,53 @@ namespace Systems.Cargo
 			UpdateManager.Remove(CallbackType.UPDATE, UpdateMe);
 		}
 
-		/// <summary>
-		/// Send Shuttle to the station.
-		/// Server only.
-		/// </summary>
-		public void MoveToStation()
-		{
-			mm.ChangeFlyingDirection(Orientation.Down);
-			MoveTo(StationDest);
-		}
-
-		/// <summary>
-		/// Send shuttle to centcom.
-		/// Server only.
-		/// </summary>
-		public void MoveToCentcom()
-		{
-			mm.ChangeFlyingDirection(Orientation.Up);
-			MoveTo(centcomDest);
-		}
-
-		private void MoveTo(Vector3 pos)
-		{
-			moving = true;
-			destination = pos;
-			mm.SetSpeed(25);
-			mm.AutopilotTo(destination);
-		}
 
 		//Server Side Only
 		private void UpdateMe()
 		{
-			if (moving && Vector2.Distance(transform.position, destination) < 2)    //arrived to dest
+			if (CargoManager.Instance.CurrentTravelTime <= 0f)
 			{
-				moving = false;
-				mm.SetPosition(destination);
-				mm.StopMovement();
-				mm.SteerTo(Orientation.Up);
-
-				if (CargoManager.Instance.ShuttleStatus == ShuttleStatus.OnRouteStation)
+				if (CargoManager.Instance.ElevatorStatus == ElevatorStatus.TravellingDown)
 				{
-					mm.ChangeFlyingDirection(Orientation.Down);
-					StartCoroutine(ReverseIntoStation());
+					FindObjects();
+					UnloadCargo();
+				}
+				if (CargoManager.Instance.ElevatorStatus == ElevatorStatus.TravellingDown || CargoManager.Instance.ElevatorStatus == ElevatorStatus.TravellingUp) CargoManager.Instance.OnElevatorArrival();
+			}
+		}
+
+		public void FindObjects()
+		{
+			objectsOnElevator.Clear();
+
+			Vector3Int currentPosition = transform.position.RoundToInt();
+			
+			for(int x = 0; x < Size.x; x++)
+			{
+				for(int y = 0; y < Size.y; y++)
+				{				
+					Vector3Int positionToCheck = currentPosition + new Vector3Int(x, y, 0);
+
+					IEnumerable<UniversalObjectPhysics> objs = MatrixManager.GetAt<UniversalObjectPhysics>(positionToCheck, true).Distinct();
+
+					objectsOnElevator = objectsOnElevator.Concat(objs).ToHashSet();
 				}
 			}
-			if (CargoManager.Instance.CurrentFlyTime <= 0f &&
-				CargoManager.Instance.ShuttleStatus == ShuttleStatus.OnRouteCentcom)
-			{
-				UnloadCargo();
-				CargoManager.Instance.OnShuttleArrival();
-			}
 		}
 
-		IEnumerator ReverseIntoStation()
+		public void MoveDown()
 		{
-			if (ChangeDirectionAtOffset)
-			{
-				mm.SteerTo(Orientation.Down);
-				mm.ChangeFlyingDirection(Orientation.Up);
-			}
-
-			if (dockOffset != 0)
-			{
-				yield return new WaitForSeconds(3f);
-				mm.MoveFor(dockOffset);
-				yield return new WaitForSeconds(2f);
-			}
-			CargoManager.Instance.OnShuttleArrival();
+			//Add move down animation and rails
 		}
 
-		/// <summary>
-		/// Scans and finds all objects that are aboard the shuttle.
-		/// <returns>All objects found as children of a Transform variable.</returns>
-		/// </summary>
-		public Transform SearchForObjectsOnShuttle()
+		public void MoveUp()
 		{
-			//note: This scan also seems to find objects contained inside closets only if the object was placed
-			//into the crate after the crate was already on the cargo shuttle. Hence we are using alreadySold
-			//to avoid duplicate selling in lieu of a more thorough fix to closet held items logic.
-			Transform ObjectHolder = mm.MatrixInfo.Objects;
-			return ObjectHolder;
+			//Add move up animation and rails
+		}
+
+		public static HashSet<UniversalObjectPhysics> FetchObjects()
+		{
+			return objectsOnElevator;
 		}
 
 		/// <summary>
@@ -156,7 +104,6 @@ namespace Systems.Cargo
 		/// </summary>
 		private void UnloadCargo()
 		{
-			Transform objectHolder = SearchForObjectsOnShuttle();
 			//track what we've already sold so it's not sold twice.
 			HashSet<GameObject> alreadySold = new HashSet<GameObject>();
 			var seekingItemTraitsForBounties = new List<ItemTrait>();
@@ -174,13 +121,10 @@ namespace Systems.Cargo
 				return false;
 			}
 
-			for (int i = 0; i < objectHolder.childCount; i++)
+			foreach (UniversalObjectPhysics item in objectsOnElevator)
 			{
-				var item = objectHolder.GetChild(i).gameObject;
-				if (item == null) continue;
-
 				//need VisibleState check because despawned objects still stick around on their matrix transform
-				if (item.TryGetComponent<UniversalObjectPhysics>(out var behaviour) && behaviour.IsVisible)
+				if (item.IsVisible)
 				{
 					if (item.TryGetComponent<Attributes>(out var attributes))
 					{
@@ -188,10 +132,9 @@ namespace Systems.Cargo
 						if (attributes.CanBeSoldInCargo == false && hasBountyTrait(attributes) == false) continue;
 
 						// Don't sell secured objects e.g. conveyors.
-						if (attributes.CanBeSoldInCargo && behaviour.IsNotPushable) continue;
+						if (attributes.CanBeSoldInCargo && item.IsNotPushable) continue;
 					}
-
-					CargoManager.Instance.ProcessCargo(item, alreadySold);
+					CargoManager.Instance.ProcessCargo(item.gameObject, alreadySold);
 				}
 			}
 		}
@@ -206,7 +149,7 @@ namespace Systems.Cargo
 		}
 
 		/// <summary>
-		/// Spawns the order inside cargo shuttle.
+		/// Spawns the order inside elevator.
 		/// Server only.
 		/// </summary>
 		/// <param name="order">Order to spawn.</param>
@@ -282,7 +225,7 @@ namespace Systems.Cargo
 				return true;
 			}
 
-			CargoManager.Instance.CentcomMessage += "Loaded " + order.OrderName + " onto shuttle.\n";
+			CargoManager.Instance.CentcomMessage += "Loaded " + order.OrderName + " onto elevator.\n";
 			return (true);
 		}
 
@@ -304,33 +247,32 @@ namespace Systems.Cargo
 		}
 
 		/// <summary>
-		/// Get all unoccupied positions inside shuttle.
+		/// Get all unoccupied positions inside elevator.
 		/// Needs to be called before starting to spawn orders.
 		/// </summary>
 		private void GetAvailablePositions()
 		{
-			Vector3Int pos;
-			int x = 0;
-			if (!heightInMiddle) { x = 1; }
+			Vector3Int pos = transform.position.RoundToInt();
+
 			availableSpawnSlots = new List<Vector3Int>();
-			for (int i = -shuttleZoneHeight; i <= shuttleZoneHeight - (shuttleHeight%2); i++)
+
+			for (int i = 0; i <= Size.y; i++)
 			{
-				for (int j = -shuttleZoneWidth; j <= shuttleZoneWidth; j++)
-				{
-					pos = mm.ServerState.Position.RoundToInt();
-					//i + 1 because cargo shuttle center is offseted by 1
-					pos += new Vector3Int(j, i + x, 0);
-					if ((MatrixManager.Instance.GetFirst<ClosetControl>(pos, true) == null) &&
-						MatrixManager.IsFloorAt(pos, true))
+				for (int j = 0; j <= Size.x; j++)
+				{		
+					Vector3Int offset = new Vector3Int(j, i, 0);
+
+					if ((MatrixManager.Instance.GetFirst<ClosetControl>(pos + offset, true) == null) &&
+						MatrixManager.IsFloorAt(pos + offset, true))
 					{
-						availableSpawnSlots.Add(pos);
+						availableSpawnSlots.Add(pos + offset);
 					}
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets random unoccupied position inside shuttle.
+		/// Gets random unoccupied position inside elevator.
 		/// </summary>
 		private Vector3 GetRandomFreePos()
 		{
