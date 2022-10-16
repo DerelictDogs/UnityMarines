@@ -72,7 +72,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   SoundOnDestroy: []
   connectCategory: 2
-  connectType: 2
+  connectType: 3
   spriteSheet:
     Texture: {fileID: 2800000, guid: ba5dc764f2d786b4a866f8b41fdbb43d, type: 3}
     Sprites:

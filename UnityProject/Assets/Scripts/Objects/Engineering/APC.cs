@@ -21,6 +21,7 @@ namespace Objects.Engineering
 	[RequireComponent(typeof(ResistanceSourceModule))]
 	public class APC : ImnterfaceMultitoolGUI, ISubscriptionController, INodeControl, ICheckedInteractable<HandApply>, IServerDespawn, IMultitoolMasterable
 	{
+		private Rotatable rotatable;
 		// -----------------------------------------------------
 		//					ELECTRICAL THINGS
 		// -----------------------------------------------------
@@ -81,6 +82,7 @@ namespace Objects.Engineering
 		{
 			powerControlSlot = GetComponent<ItemStorage>().GetIndexedItemSlot(0);
 			powerCellSlot = GetComponent<ItemStorage>().GetIndexedItemSlot(1);
+			rotatable = GetComponent<Rotatable>();
 
 			electricalNodeControl = GetComponent<ElectricalNodeControl>();
 			resistanceSourceModule = GetComponent<ResistanceSourceModule>();
@@ -266,22 +268,18 @@ namespace Objects.Engineering
 			switch (State)
 			{
 				case APCState.Full:
-					loadedScreenSprites = fullSprites;
 					EmergencyState = false;
 					if (!RefreshDisplay) StartRefresh();
 					break;
 				case APCState.Charging:
-					loadedScreenSprites = chargingSprites;
 					EmergencyState = false;
 					if (!RefreshDisplay) StartRefresh();
 					break;
 				case APCState.Critical:
-					loadedScreenSprites = criticalSprites;
 					EmergencyState = true;
 					if (!RefreshDisplay) StartRefresh();
 					break;
 				case APCState.Dead:
-					screenDisplay.sprite = null;
 					EmergencyState = true;
 					StopRefresh();
 					_ = SoundManager.PlayAtPosition(NoPowerSound, gameObject.AssumedWorldPosServer());
@@ -292,30 +290,11 @@ namespace Objects.Engineering
 		//	//					DISPLAY THINGS
 		//	// -----------------------------------------------------
 		/// <summary>
-		/// The screen sprites which are currently being displayed
-		/// </summary>
-		[PrefabModeOnly]
-		Sprite[] loadedScreenSprites;
-		/// <summary>
-		/// The animation sprites for when the APC is in a critical state
-		/// </summary>
-		[PrefabModeOnly]
-		public Sprite[] criticalSprites;
-		/// <summary>
-		/// The animation sprites for when the APC is charging
-		/// </summary>
-		[PrefabModeOnly]
-		public Sprite[] chargingSprites;
-		/// <summary>
-		/// The animation sprites for when the APC is fully charged
-		/// </summary>
-		[PrefabModeOnly]
-		public Sprite[] fullSprites;
-		/// <summary>
 		/// The sprite renderer for the APC display
 		/// </summary>
 		[PrefabModeOnly]
-		public SpriteRenderer screenDisplay;
+		public SpriteHandler screenDisplay;
+
 		/// <summary>
 		/// The sprite index for the display animation
 		/// </summary>
@@ -358,11 +337,27 @@ namespace Objects.Engineering
 		//	///// </summary>
 		private void RefreshDisplayScreen()
 		{
-			if (++displayIndex >= loadedScreenSprites.Length)
+			screenDisplay.ChangeSprite((int)_state);
+
+			switch(rotatable.CurrentDirection)
 			{
-				displayIndex = 0;
+				case OrientationEnum.Down_By180:
+					screenDisplay.ChangeSpriteVariant(0);
+					break;
+				case OrientationEnum.Up_By0:
+					screenDisplay.ChangeSpriteVariant(1);
+					break;
+				case OrientationEnum.Right_By270:
+					screenDisplay.ChangeSpriteVariant(2);
+					break;
+				case OrientationEnum.Left_By90:
+					screenDisplay.ChangeSpriteVariant(3);
+					break;
+				case OrientationEnum.Default:
+					screenDisplay.ChangeSpriteVariant(0);
+					break;
 			}
-			screenDisplay.sprite = loadedScreenSprites[displayIndex];
+			
 		}
 
 		// -----------------------------------------------------

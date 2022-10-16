@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c576ac449c2d45d99890dcfa21598645, type: 3}
-  m_Name: Grating
+  m_Name: regular_cargoSquare
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: floor tile
   description: 
   LayerType: 3
   TileType: 3
@@ -74,7 +74,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   SoundOnDestroy: []
-  sprite: {fileID: -2031806031, guid: dfde6f3a8d8467342a27383a97935ab7, type: 3}
+  sprite: {fileID: 835007014, guid: dfde6f3a8d8467342a27383a97935ab7, type: 3}
   CanBeHighlightedThroughScanners: 0
   AssoicatedSpawnedObjects: []
   HighlightObject: {fileID: 0}

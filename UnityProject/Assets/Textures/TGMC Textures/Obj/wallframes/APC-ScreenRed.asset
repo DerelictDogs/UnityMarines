@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1de2691495b304e9843ac3335b626d, type: 3}
+  m_Name: APC-ScreenRed
+  m_EditorClassIdentifier: 
+  Variance:
+  - Frames:
+    - sprite: {fileID: 4532279335451882849, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -5898147254702245053, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: 8164818385715135863, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: 2768253232217416572, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+  - Frames:
+    - sprite: {fileID: 8502743872374196351, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -4754719215348035705, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -8460436583789270233, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -8260024254321257683, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+  - Frames:
+    - sprite: {fileID: 4250319022858664497, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -8649880324747513754, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: 3405551617479098542, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: 6827662829508474814, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+  - Frames:
+    - sprite: {fileID: 5654003058463341497, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -3960395843276893503, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: -3196610136431335423, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+    - sprite: {fileID: 5701357545524737498, guid: 7aba71f1a73f1cd4c8889a9e5f90255e,
+        type: 3}
+      secondDelay: 1
+  IsPalette: 0
+  DisplayName: 
