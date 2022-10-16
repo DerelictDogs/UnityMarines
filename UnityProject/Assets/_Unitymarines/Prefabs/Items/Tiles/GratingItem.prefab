@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4011253906311630438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: placeSound.AssetAddress
+      value: Assets/Prefabs/Effects/GenHit.prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[0].itemCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[1].itemCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[0].layerTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c492b611555c064b83de47d6c8b150f,
+        type: 2}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[1].layerTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cf82714862062e4981b2dc41eacae8a,
+        type: 2}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[0].placeableOn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[1].placeableOn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[0].placeableOnlyOnTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 5eb3d8eb67675d04893723c297b32142,
+        type: 2}
+    - target: {fileID: -2289686858971562560, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: waysToPlace.Array.data[1].placeableOnlyOnTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 83855008e43a2674d8d6a006ce94326f,
+        type: 2}
+    - target: {fileID: 1288279232432990838, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: foreverID
+      value: cd59e0d33389e0f4c94a986437f579a6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025570835496394140, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246253069053451183, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_AssetId
+      value: cd59e0d33389e0f4c94a986437f579a6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280990524061358959, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285636922457581083, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_Name
+      value: GratingItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452644575336256839, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1356916345, guid: dfde6f3a8d8467342a27383a97935ab7,
+        type: 3}
+    - target: {fileID: 5452644575336256839, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744271448915577209, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: initialName
+      value: grating
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744271448915577209, guid: 3f672633d3ec44441ab84551e50dcf1b,
+        type: 3}
+      propertyPath: initialDescription
+      value: The ground you walk on
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f672633d3ec44441ab84551e50dcf1b, type: 3}

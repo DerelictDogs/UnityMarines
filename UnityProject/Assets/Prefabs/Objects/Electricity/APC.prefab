@@ -75,7 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: -1618464505
   m_SortingLayer: 19
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 8644f93b57e95e7489842a0988657d2b, type: 3}
+  m_Sprite: {fileID: 4361292375457884581, guid: c3370bdf73f1a13468f9f3b5e6b7a67c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkThis: 1
   SubCatalogue:
-  - {fileID: 11400000, guid: cbf07c1d691994c45ba9cbcaf280c5e9, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  PresentSpriteSet: {fileID: 11400000, guid: ef212a545b6dd294f8d0d6cdfb382dba, type: 2}
+  - {fileID: 11400000, guid: e91ba3baba548894bb02197299ff2593, type: 2}
+  - {fileID: 11400000, guid: 0d568e5414268884db3fb7bb26d610cf, type: 2}
+  - {fileID: 11400000, guid: 061263cfd43375248b7701dd598d95e1, type: 2}
+  - {fileID: 11400000, guid: 50c4975aac20a164ba1ea38ab9dc6924, type: 2}
+  PresentSpriteSet: {fileID: 11400000, guid: e91ba3baba548894bb02197299ff2593, type: 2}
   randomInitialSprite: 0
   doReverseAnimation: 0
   pushTextureOnStartUp: 1
@@ -154,6 +155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1830731818115737490, guid: f9025da3beb40304cb15babfc0a6cafa,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830731818115737490, guid: f9025da3beb40304cb15babfc0a6cafa,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -191,7 +197,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 64fed642a85ac404098409565b63ae87,
+      objectReference: {fileID: 2812953313654932095, guid: aa273927f45dbd54da9dae633c66245f,
         type: 3}
     - target: {fileID: 2408678487295248438, guid: f9025da3beb40304cb15babfc0a6cafa,
         type: 3}
@@ -237,6 +243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456943875737660155, guid: f9025da3beb40304cb15babfc0a6cafa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2456943875737660155, guid: f9025da3beb40304cb15babfc0a6cafa,
         type: 3}
@@ -344,8 +355,13 @@ PrefabInstance:
         type: 3}
       propertyPath: PresentSpriteSet
       value: 
-      objectReference: {fileID: 11400000, guid: f1bcb2daa03658143aaa426140d76d4d,
+      objectReference: {fileID: 11400000, guid: 45f653c886019de45928303b69ebe97b,
         type: 2}
+    - target: {fileID: 6943869364395329275, guid: f9025da3beb40304cb15babfc0a6cafa,
+        type: 3}
+      propertyPath: SubCatalogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8828844020504926570, guid: f9025da3beb40304cb15babfc0a6cafa,
         type: 3}
       propertyPath: Node
@@ -396,7 +412,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   MethodRotation: 0
-  ChangeSprites: 0
+  ChangeSprites: 1
   isChangingSO: 0
   CurrentDirection: 3
   IgnoreServerUpdatesIfLocalPlayer: 0
@@ -468,7 +484,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  runningInterfaces: []
+  runningInterfaces:
+  - {fileID: 0}
+  - {fileID: 0}
   powerMachinery: 1
   powerLights: 1
   powerEnvironment: 1
@@ -480,24 +498,7 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  criticalSprites:
-  - {fileID: 21300000, guid: 3ac29bf6690a77446adae1c9870da9f4, type: 3}
-  - {fileID: 21300004, guid: 3ac29bf6690a77446adae1c9870da9f4, type: 3}
-  - {fileID: 21300004, guid: 3ac29bf6690a77446adae1c9870da9f4, type: 3}
-  - {fileID: 21300006, guid: 3ac29bf6690a77446adae1c9870da9f4, type: 3}
-  - {fileID: 21300008, guid: 3ac29bf6690a77446adae1c9870da9f4, type: 3}
-  chargingSprites:
-  - {fileID: 21300000, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300002, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300004, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300006, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300008, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300010, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  - {fileID: 21300012, guid: 345a5fef5c1bd2142a93f2f916e5ae06, type: 3}
-  fullSprites:
-  - {fileID: 21300000, guid: 8644f93b57e95e7489842a0988657d2b, type: 3}
-  - {fileID: 21300002, guid: 8644f93b57e95e7489842a0988657d2b, type: 3}
-  screenDisplay: {fileID: 7181786134445355985}
+  screenDisplay: {fileID: 4562542710625501896}
   connectedDevices: []
   connectedDepartmentBatteries: []
   canNotBeDeconstructed: 0

@@ -534,6 +534,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3129823529324655851, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
+        type: 3}
+      propertyPath: wattusage
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 439079025439827842, guid: 0a8f5c88af82c8b4a8c9c38d00a61c82,
         type: 3}
       propertyPath: PresentSpriteSet
@@ -673,30 +678,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2372088890481790994}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7320943000511261170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254250705433173322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053e2d398d507cc449f05be2499aa497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  minimumWorkingVoltage: 190
-  expectedRunningVoltage: 240
-  maximumWorkingVoltage: 300
-  deviceType: 3
-  isSelfPowered: 0
-  wattusage: 150
-  InitialResistance: 100000000
-  RelatedAPC: {fileID: 0}
-  AdvancedControlToScript: 0
-  StateUpdateOnClient: 1
 --- !u!114 &7524093093483568748
 MonoBehaviour:
   m_ObjectHideFlags: 0
