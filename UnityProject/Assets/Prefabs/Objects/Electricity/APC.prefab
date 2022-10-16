@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1618464505
   m_SortingLayer: 19
   m_SortingOrder: 11
-  m_Sprite: {fileID: -720458211029317372, guid: c3370bdf73f1a13468f9f3b5e6b7a67c,
+  m_Sprite: {fileID: 4361292375457884581, guid: c3370bdf73f1a13468f9f3b5e6b7a67c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  screenDisplay: {fileID: 7181786134445355985}
+  screenDisplay: {fileID: 4562542710625501896}
   connectedDevices: []
   connectedDepartmentBatteries: []
   canNotBeDeconstructed: 0
