@@ -127,6 +127,51 @@ PrefabInstance:
       propertyPath: hideClothingFlags
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Bio
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Rad
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Acid
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Bomb
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Fire
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Laser
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Melee
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Bullet
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488531077922663577, guid: 7e57e89abd1fad546b6935744ede2715,
+        type: 3}
+      propertyPath: armoredBodyParts.Array.data[0].armor.Energy
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6449447836698472616, guid: 7e57e89abd1fad546b6935744ede2715,
         type: 3}
       propertyPath: foreverID
