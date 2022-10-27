@@ -593,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 9076680014166393348, guid: d3b6228e4d6cf91479335497dcd1ce08,
         type: 3}
       propertyPath: initialName
-      value: erraGov standard flak jacket
+      value: TerraGov standard flak jacket
       objectReference: {fileID: 0}
     - target: {fileID: 9076680014166393348, guid: d3b6228e4d6cf91479335497dcd1ce08,
         type: 3}
