@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 4674895267935155534, guid: e1626dd0ee82de5469120b61679c43b4,
         type: 3}
       propertyPath: initialName
-      value: M11X pattern marine helmet
+      value: M11X pattern leader helmet
       objectReference: {fileID: 0}
     - target: {fileID: 4674895267935155534, guid: e1626dd0ee82de5469120b61679c43b4,
         type: 3}
