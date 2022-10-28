@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6866345709167287716
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1390229071786582443, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: PresentSpriteSet
+      value: 
+      objectReference: {fileID: 11400000, guid: e698f4b3c4a2c2542bcc56983c91e312,
+        type: 2}
+    - target: {fileID: 2213434735345768001, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: foreverID
+      value: GSrRC2nW7YmZ02w0JMb4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674895267935155534, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: initialName
+      value: M10XE pattern marine helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674895267935155534, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: initialDescription
+      value: A standard M10XE Pattern Helmet. This is a modified version of the M10X
+        helmet, offering an enclosed visor apparatus.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971128820355901808, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 267e039a54458834a96e08864f56c333,
+        type: 3}
+    - target: {fileID: 5047702638299191852, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_Name
+      value: M10XEPMarineHelmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052626388302194520, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224487532439448, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: m_AssetId
+      value: f71b3904890024e4caba658e44d96233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808635682618372688, guid: e1626dd0ee82de5469120b61679c43b4,
+        type: 3}
+      propertyPath: allClothingData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 87a9933c32de0534d836993b3fb5c95d,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1626dd0ee82de5469120b61679c43b4, type: 3}
